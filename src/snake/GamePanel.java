@@ -14,7 +14,7 @@ public class GamePanel extends JPanel implements ActionListener {
     static final int SCREEN_HEIGHT = 600;
     static final int UNIT_SIZE = 25;
     static final int GAME_UNITS = (SCREEN_WIDTH * SCREEN_HEIGHT)/UNIT_SIZE;
-    static final int DELAY = 75; // Higher the number slower the game
+    static int DELAY; // Higher the number slower the game
     final int x[] = new int[GAME_UNITS]; // Snake isn't going to be bigger than the game itself
     final int y[] = new int[GAME_UNITS];
     int bodyParts = 6; // begin with 6 body parts of the snake
@@ -37,7 +37,13 @@ public class GamePanel extends JPanel implements ActionListener {
         startGame();
     }
 
+    public void getDelay() {
+        String speed = JOptionPane.showInputDialog("Enter Delay in ms (Higher number = more delay)");
+        DELAY = Integer.parseInt(speed);
+    }
+
     public void startGame() {
+        getDelay();
         newApple();
         running = true;
         timer = new Timer(DELAY,this);
